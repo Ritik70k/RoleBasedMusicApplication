@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Navigate, Routes, Route } from 'react-router-dom'
-import axios from 'axios'
+import api from './api/axios'
 import Register from './pages/Register'
 import UserDashboard from './pages/userPages/UserDashboard'
 import ArtistDashboard from './pages/artistPages/ArtistDashboard'
@@ -10,7 +10,7 @@ const ProtectedRoute = ({ allowedRole, children }) => {
   const [user, setUser] = useState(undefined)
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/auth/me', { withCredentials: true })
+    api.get('/auth/me')
       .then((response) => setUser(response.data.user))
       .catch(() => setUser(null))
   }, [])
