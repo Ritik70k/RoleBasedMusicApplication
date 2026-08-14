@@ -9,6 +9,10 @@ const musicShema = new mongoose.Schema({
         type: String,
         required: true
     },
+    thumbnail: {
+        type: String,
+        default: ""
+    },
     artist: {
         type:mongoose.Schema.Types.ObjectId,
         ref: "user",

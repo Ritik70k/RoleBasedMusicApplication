@@ -19,7 +19,21 @@ const userSchema = new mongoose.Schema({
         type:String,
         enum:["user","artist"],
         default:"user"
-    }
+    },
+    favorites: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "music"
+    }],
+    recentlyPlayed: [{
+        music: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "music"
+        },
+        playedAt: {
+            type: Date,
+            default: Date.now
+        }
+    }]
 })
 
 const userModel = mongoose.model("user", userSchema)
